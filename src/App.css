@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+.spanStyle {
+  color: #fff;
+  left: 0;
+  padding: 10px 20px;
+  position: absolute;
+  top: 0;
+}
+
+.card {
+  width: 23rem !important;
+}
+
+.card:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.card-title {
+  color: #0a406a !important;
+  font-family: Haboro Slab, serif !important;
+  font-weight: 500 !important;
+  line-height: 24px !important;
+  margin: 16px 0 !important;
+}
+
+.post-author {
+  color: #54565a;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.card-text {
+  color: #54565a !important;
+  font-family: proxima-nova, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 22px !important;
+  margin: 10px 0 !important;
+}

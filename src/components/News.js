@@ -293,15 +293,16 @@ export class News extends Component {
     return (
       <>
         <div className="container my-3">
-          <h2>News Hunger - Top Headlines of the Day</h2>
+          <h2 style={{color: "#0a406a"}}>News Hunger - Top Headlines of the Day</h2>
           <div className="row">
             {this.state.articles.map((news) => (
               <div className="col-md-4" key={news.url}>
                 <NewsItem
                   title={news.title}
-                  description={news.description.slice(0,80)}
+                  description={news.description.slice(0,200)}
                   imageUrl={news.urlToImage}
                   newsUrl={news.url}
+                  author={news.author}
                 />
               </div>
             ))}
