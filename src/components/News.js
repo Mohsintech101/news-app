@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import { Spinner } from "./Spinner";
 import NewsItem from "./NewsItem";
+import PropTypes from 'prop-types'
 
 export class News extends Component {
+
+  //Adding PropTypes
+  static defaultProps = {
+    pageSize: 10,
+    country: 'us',
+    category: 'general'
+  }
+
+  static propTypes = {
+    pageSize: PropTypes.number.isRequired,
+    country: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired
+  }
+
   //constructor - always call super first
   constructor() {
     super();
@@ -16,7 +31,7 @@ export class News extends Component {
 
   //fetching top-headlines data and setting to the setState
   async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=3929f9e4099f4baa914789f2c8251504&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -33,7 +48,7 @@ export class News extends Component {
 
   //Previous fetch  
   handlePrevBtn = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=3929f9e4099f4baa914789f2c8251504&page=${
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${
       this.state.page - 1
     }&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -48,7 +63,7 @@ export class News extends Component {
 
   //Next fetch
   handleNextBtn = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=3929f9e4099f4baa914789f2c8251504&page=${
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${
       this.state.page + 1
     }&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -83,6 +98,7 @@ export class News extends Component {
                     }
                     newsUrl={news.url}
                     author={news.author}
+                    category={this.props.category}
                   />
                 </div>
               ))}

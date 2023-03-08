@@ -2,13 +2,13 @@ import React, { Component } from "react";
 
 export class NewsItem extends Component {
   render() {
-    let { title, description, imageUrl, newsUrl, author } = this.props;
+    let { title, description, imageUrl, newsUrl, author, category } = this.props;
     return (
       <div className="my-3">
         <div className="card" style={{ width: "18rem" }}>
           <img src={imageUrl} className="card-img-top" alt={title} title={title} />
           <span className="spanStyle" style={{ backgroundColor: "#a2d45eb3" }}>
-            Article
+            {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
           </span>
           {/* #0a406ab3 */}
           <div className="card-body">
