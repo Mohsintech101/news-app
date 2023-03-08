@@ -22,22 +22,24 @@ export class NewsItem extends Component {
             </h5>
             <span
               className="post-author"
-              style={{ color: "#54565a", fontWeight: 600 }}
+              style={{ color: "#54565a", fontWeight: 400 }}
             >
               {author}
             </span>
             <p className="card-text" style={{ color: "#54565a" }}>
-              {description.length < 500 ? description : description + "..." }
+              {description.length < 200 ? description : description + "..." }
             </p>
-            <a
+           <div className="newsLinkMargin">
+           <a
               href={newsUrl}
               target="_blank"
               rel="noreferrer"
-              className="btn btn-sm btn-primary"
-              style={{ backgroundColor: "rgba(255,131,0,1)", border: "none" }}
+              className="newsLink" //btn btn-sm btn-primary
+              style={{  }}
             >
               Read More
             </a>
+           </div>
           </div>
         </div>
       </div>
