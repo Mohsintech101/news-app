@@ -98,6 +98,7 @@ export class News extends Component {
                     }
                     newsUrl={news.url}
                     author={news.author}
+                    date={news.publishedAt}
                     category={this.props.category}
                   />
                 </div>

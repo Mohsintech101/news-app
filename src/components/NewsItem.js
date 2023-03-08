@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export class NewsItem extends Component {
   render() {
-    let { title, description, imageUrl, newsUrl, author, category } = this.props;
+    let { title, description, imageUrl, newsUrl, author, date, category } = this.props;
     return (
       <div className="my-3">
         <div className="card" style={{ width: "18rem" }}>
@@ -24,7 +24,7 @@ export class NewsItem extends Component {
               className="post-author"
               style={{ color: "#54565a", fontWeight: 400 }}
             >
-              {author}
+            {author ? 'By ' + author : author} {/* - {new Date(date).toGMTString()} */}
             </span>
             <p className="card-text" style={{ color: "#54565a" }}>
               {description.length < 200 ? description : description + "..." }
