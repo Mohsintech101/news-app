@@ -6,7 +6,7 @@ export class NewsItem extends Component {
     return (
       <div className="my-3">
         <div className="card" style={{ width: "18rem" }}>
-          <img src={imageUrl} className="card-img-top" alt={title} />
+          <img src={imageUrl} className="card-img-top" alt={title} title={title} />
           <span className="spanStyle" style={{ backgroundColor: "#a2d45eb3" }}>
             Article
           </span>
@@ -27,11 +27,12 @@ export class NewsItem extends Component {
               {author}
             </span>
             <p className="card-text" style={{ color: "#54565a" }}>
-              {description}...
+              {description.length < 500 ? description : description + "..." }
             </p>
             <a
               href={newsUrl}
               target="_blank"
+              rel="noreferrer"
               className="btn btn-sm btn-primary"
               style={{ backgroundColor: "rgba(255,131,0,1)", border: "none" }}
             >

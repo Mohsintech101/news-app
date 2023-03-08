@@ -74,3 +74,30 @@
   line-height: 22px !important;
   margin: 10px 0 !important;
 }
+
+.navbar{
+  background-color: #0a406a !important;
+}
+
+.navbar-brand{
+  color: white !important;
+}
+
+.nav-link-active{
+  color: white !important;
+}
+
+.nav-link{
+  color: white !important;
+}
+
+.pagebtn{
+  padding: 0px 6px !important;
+  background-color: #0a406a !important;
+  border: none !important;
+  color: white !important;
+}
+
+.pagefont{
+  font-size: 25px;
+}
