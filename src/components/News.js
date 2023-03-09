@@ -40,15 +40,19 @@ export class News extends Component {
 
   //Update News from a single function
   async updateNews() {
+    this.props.setProgress(10)
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    this.props.setProgress(30)
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
+    this.props.setProgress(70)
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
       loading: false,
     });
+    this.props.setProgress(100)
   }
 
   //fetching top-headlines data and setting to the setState

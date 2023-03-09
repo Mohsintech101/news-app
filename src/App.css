@@ -165,9 +165,37 @@ img.card-img-top {
   }
 }
 
-/* @media Screen and (max-width: 800){
-  .col-md-6{
-    display: flex !important;
-    flex-direction: column;
+@media Screen and (max-width: 430px) {
+  .card {
+    width: 25rem !important;
+    height: 670px !important;
   }
-} */
+
+  img.card-img-top {
+    height: 230px !important;
+  }
+}
+
+@media Screen and (max-width: 375px) {
+  .card {
+    width: 22rem !important;
+    height: 610px !important;
+  }
+
+  img.card-img-top {
+    height: 200px !important;
+  }
+}
+
+@media Screen and (max-width: 315px) {
+  .card {
+    width: 18rem !important;
+    height: 645px !important;
+  }
+
+  img.card-img-top {
+    height: 175px !important;
+  }
+}
+
+
