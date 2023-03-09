@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export default class App extends Component {
   numNews = 10;
+  apikey = process.env.NEWS_API;
 
   state = {
     progress: 0,
@@ -32,6 +33,7 @@ export default class App extends Component {
               path="/"
               element={
                 <News
+                  apikey={this.apikey}
                   setProgress={this.setProgress}
                   key="general"
                   pageSize={this.numNews}
@@ -45,6 +47,7 @@ export default class App extends Component {
               path="/business"
               element={
                 <News
+                  apikey={this.apikey}
                   setProgress={this.setProgress}
                   key="business"
                   pageSize={this.numNews}
@@ -58,6 +61,7 @@ export default class App extends Component {
               path="/entertainment"
               element={
                 <News
+                  apikey={this.apikey}
                   setProgress={this.setProgress}
                   key="entertainment"
                   pageSize={this.numNews}
@@ -71,6 +75,7 @@ export default class App extends Component {
               path="/health"
               element={
                 <News
+                  apikey={this.apikey}
                   setProgress={this.setProgress}
                   key="health"
                   pageSize={this.numNews}
@@ -84,6 +89,7 @@ export default class App extends Component {
               path="/science"
               element={
                 <News
+                  apikey={this.apikey}
                   setProgress={this.setProgress}
                   key="science"
                   pageSize={this.numNews}
@@ -97,6 +103,7 @@ export default class App extends Component {
               path="/technology"
               element={
                 <News
+                  apikey={this.apikey}
                   setProgress={this.setProgress}
                   key="technology"
                   pageSize={this.numNews}
@@ -110,6 +117,7 @@ export default class App extends Component {
               path="/sports"
               element={
                 <News
+                  apikey={this.apikey}
                   setProgress={this.setProgress}
                   key="sports"
                   pageSize={this.numNews}
