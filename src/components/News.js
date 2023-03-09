@@ -19,19 +19,25 @@ export class News extends Component {
   }
 
   //constructor - always call super first
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       articles: [], //initially articles are empty
       loading: false,
       error: false,
       page: 1,
     };
+    document.title = `${this.capitalizeCase(this.props.category)} - News Hunger`
   }
 
-  //fetching top-headlines data and setting to the setState
-  async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+  //Capitalize Case
+  capitalizeCase = (category) => {
+      return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()
+  }
+
+  //Update News from a single function
+  async updateNews(){
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -42,13 +48,27 @@ export class News extends Component {
     });
   }
 
+  //fetching top-headlines data and setting to the setState
+  async componentDidMount() {
+    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    this.setState({ loading: true });
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    this.setState({
+      articles: parsedData.articles,
+      totalResults: parsedData.totalResults,
+      loading: false,
+    }); */
+    this.updateNews()
+  }
+
   //defualt Image Path
   defaultImage =
     "https://media.cnn.com/api/v1/images/stellar/prod/230306110839-worm-moon-2022-file-restricted.jpg?c=16x9&q=w_800,c_fill";
 
   //Previous fetch  
   handlePrevBtn = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${
+    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${
       this.state.page - 1
     }&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -58,12 +78,17 @@ export class News extends Component {
       articles: parsedData.articles,
       page: this.state.page - 1,
       loading: false,
-    });
+    }); */
+
+    this.setState({
+      page: this.state.page - 1
+    })
+    this.updateNews()
   };
 
   //Next fetch
   handleNextBtn = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${
+    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3929f9e4099f4baa914789f2c8251504&page=${
       this.state.page + 1
     }&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -73,7 +98,11 @@ export class News extends Component {
       articles: parsedData.articles,
       page: this.state.page + 1,
       loading: false,
-    });
+    }); */
+    this.setState({
+     page: this.state.page + 1
+    })
+    this.updateNews()
   };
 
   render() {
@@ -81,7 +110,7 @@ export class News extends Component {
       <>
         <div className="container my-3">
           <h2 className="text-center" style={{ color: "#0a406a" }}>
-            News Hunger - Top Headlines of the Day
+            News Hunger - Top Headlines of on {this.capitalizeCase(this.props.category)}
           </h2>
           {this.state.loading && <Spinner />}
           <div className="row">
