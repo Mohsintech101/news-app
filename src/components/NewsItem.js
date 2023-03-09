@@ -11,7 +11,7 @@ export class NewsItem extends Component {
             src={imageUrl}
             className="card-img-top"
             alt={title}
-            title={title}
+            // title={title}
           />
           <span className="spanStyle" style={{ backgroundColor: "#2859a3" }}>  {/* #0a406a   #2859a3 orange-#ff8300 green -#a2d45eb3 */}
             {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
