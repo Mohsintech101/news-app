@@ -3,6 +3,7 @@ import { Spinner } from "./Spinner";
 import NewsItem from "./NewsItem";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { v4 as uuidv4 } from 'uuid';
 
 export class News extends Component {
 
@@ -42,7 +43,7 @@ export class News extends Component {
   //Update News from a single function
   async updateNews() {
     this.props.setProgress(10)
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     this.props.setProgress(30)
     this.setState({ loading: true });
     let data = await fetch(url);
@@ -58,7 +59,7 @@ export class News extends Component {
 
   //fetching top-headlines data and setting to the setState
   async componentDidMount() {
-    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
+    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -76,7 +77,7 @@ export class News extends Component {
 
   //Previous fetch
   handlePrevBtn = async () => {
-    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${
+    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${
       this.state.page - 1
     }&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -96,7 +97,7 @@ export class News extends Component {
 
   //Next fetch
   handleNextBtn = async () => {
-    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${
+    /* let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${
       this.state.page + 1
     }&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -114,8 +115,8 @@ export class News extends Component {
   };
 
   fetchMoreData = async () => {
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pagesize=${this.props.pageSize}`;
     this.setState({page: this.state.page + 1})
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pagesize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -143,7 +144,7 @@ export class News extends Component {
             <div className="row">
               {/* !this.state.loading && */
                 this.state.articles.map((news) => (
-                  <div className="col-md-6" key={news.url}>
+                  <div className="col-md-6" key={uuidv4()}>
                     <NewsItem
                       title={news.title}
                       description={

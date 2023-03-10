@@ -121,6 +121,11 @@ img.card-img-top {
   padding-bottom: 15px;
 }
 
+.my-4 {
+  margin-top: 5.5rem!important;
+  margin-bottom: 1.5rem!important;
+}
+
 @media Screen and (max-width: 1150px) {
   .card {
     width: 29rem !important;
