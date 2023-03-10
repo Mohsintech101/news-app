@@ -80,10 +80,14 @@ App.js Steps:
        we will have atleast 7 categories, so we have to call 7 times using router.
 
     4. Import Router:
+       Syntax to Intsall react-router-dom: npm i react-router-dom
+
        import { BrowserRouter, Route, Routes } from "react-router-dom";
        This will be used for making routes for different news categories.
 
     5. Import CSS:
+       Syntax to Intsall top loading bar: npm i react-top-loading-bar
+
        import LoadingBar from "react-top-loading-bar";
        We will make changes to this file and these css will be applied to our JSX elements.
 
@@ -198,7 +202,10 @@ News.js steps:
     4. import PropTypes from "prop-types";
        Defining default and required propTypes.
 
-    5. import InfiniteScroll from "react-infinite-scroll-component";
+    5. InfiniteScroll:
+       Syntax to Intsall - npm i react-infinite-scroll-component
+    
+       import InfiniteScroll from "react-infinite-scroll-component";
        For the Implementation of InfiniteScroll during fetching of data after loading of the page.
 
     6. import { v4 as uuidv4 } from "uuid";
