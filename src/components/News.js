@@ -31,12 +31,7 @@ export default function News({
     category: PropTypes.string.isRequired,
   };
 
-  //Capitalize Case
-  const capitalizeCase = (category) => {
-    return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
-  };
-
-  //Update News from a single function
+  //Update News when loading
   const updateNews = async () => {
     setProgress(10);
     const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}&page=${page}&pagesize=${pageSize}`;
@@ -51,16 +46,23 @@ export default function News({
     setProgress(100);
   };
 
+  //Capitalize Case
+  const capitalizeCase = (category) => {
+    return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+  };
+
   //fetching top-headlines data and setting to the setState
   useEffect(() => {
     document.title = `${capitalizeCase(category)} - News Hunger`;
     updateNews();
+    //eslint-disable-next-line
   }, []);
 
   //defualt Image Path
   const defaultImage =
     "https://media.cnn.com/api/v1/images/stellar/prod/230306110839-worm-moon-2022-file-restricted.jpg?c=16x9&q=w_800,c_fill";
 
+  //fetching of news data when user scrolls
   const fetchMoreData = async () => {
     const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}&page=${
       page + 1

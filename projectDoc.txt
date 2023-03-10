@@ -1,0 +1,407 @@
+Project Number - 2
+
+Project Name/AIM - Implementation of Class/Functional Based Functions in                 React Using News API
+
+Project Steps: Create atleast 4 js files including App.js
+        Names: App.js, NavBar.js, News.js, NewsItem.js, .env.local
+
+        Other Files To be Included are:
+                                        1. Spinner.js
+                                        2. Logo.png
+                                        3. Loading.gif
+                                        4. favIcon
+
+Begin:
+
+    1. Create React App - Syntax: npx create-react-app news-app(appName)
+       
+    2. To Start Server - Syntax: npm start / npm run start
+
+    3. To Build the Application - Syntax: npm build
+
+Create JS  Files:
+       1. App.js
+       2. NavBar.js
+       3. News.js
+       4. NewsItem.js
+       5. Spinner.js
+
+Create .env.local file:
+       6. .env.local
+
+Components: components must be inside this folder(it is not necessary but a 
+            good practice)
+            1. NavBar.js
+            2. News.js
+            3. NewsItem.js
+            4. Spinner.js
+
+            also include Loading.gif and Logo.png file in this folder
+            5. Loading.gif
+            6. Logo.png
+
+Public Folder: Modify the index.html as per your requirement and
+your favIcon, website title and meta description here.
+
+git: apply git command for staging, commiting, and pushing the code to the
+     github.
+
+     git commands:
+     to track files: git add filename or git add .
+     to stage files: git add .
+     to commit files: git commit -m "message"
+     to commit files without adding files in the staging:
+                                           git commit -a -m "message"
+     to push commits: git push
+     to check status: git status
+     to log: git log
+     to restore file: git restore filename
+     to restore staged: git restore --staged filename
+     to config
+               Usage: git config --global user.name 'name'
+
+               Usage: git config --global user.email 'email'
+      
+     to initialize repository: git init or git init repositoryname
+     to remove repository: rm -rf git
+     to clone: git clone url
+     to delete files: git rm [file]
+
+App.js Steps:
+    1. Import React and useState to store the state Variables.
+       import React, { useState } from "react";
+
+    2. Import NavBar components: import NavBar from "./components/NavBar";
+       Add <NavBar /> in JSX such that it will displayed
+       on every page / when everytime page loads for different condition or for news category.
+
+    3. Import News components: import News from "./components/News";
+       <News /> This will depend on the category.
+       we will have atleast 7 categories, so we have to call 7 times using router.
+
+    4. Import Router:
+       import { BrowserRouter, Route, Routes } from "react-router-dom";
+       This will be used for making routes for different news categories.
+
+    5. Import CSS:
+       import LoadingBar from "react-top-loading-bar";
+       We will make changes to this file and these css will be applied to our JSX elements.
+
+    6.
+    How To Write Functional Based Functions in React?
+
+    Example:
+    import React from 'react'
+
+    export default function App() {
+    return (
+        <div>App</div>
+    )
+    }
+
+    There will only one function as export default and it is main function for any file.js
+
+    To import export default functions in another file:
+    example: how our app.js will be imported in index.js file and this will happen automatically but for other files we will have to do this.
+
+    Syntax: Export statement - export default function App() {}
+
+            Import statement - import App from './App';
+
+    To import named function(named function are those function which are not does not have 'default' keyword in the definition of function)
+
+    Named Syntax:
+            Export statement - export function App() {}
+
+            Import statement - import { Button } from './App.js';
+
+    7.
+    How To Write Class Based Functions in React?
+
+    import React, { Component } from 'react'
+
+    export default class App extends Component {
+    render() {
+        return (
+                <div>App</div>
+            )
+        }
+    }
+
+    Importing and Exporting of files will happen same way as in functional based.
+
+    8.  1. Initializing progress and setProgress as state variable which will 
+           used to show the progress of data fetching at the top NavBar.
+        
+        2. Initializing numNews - The no of news which we want to fetch at a 
+           single time, when page loads / mounts for the first time and when we scrolling for consecutively.
+
+        3. Initializing apiKey which we will access from .env.local file.
+           To access apiKey from .env.local file we have to create .env.local file in our projects main directory and it is by default ignored by git.
+        
+        Create .env.local file
+            1. Intsall dotenv package
+               Syntax: npm intsall dotenv
+            2. To access a variable add 'REACT_APP' before a variable
+               such in our case: 'REACT_APP_NEWS_API'  where NEWS_API is our variable.
+
+               Syntax: REACT_APP_NEWS_API = 'apiKey goes here'
+
+            3. In the App.js to access this variable write as 
+               Syntax: apiKey = process.env.REACT_APP_NEWS_API
+
+    9. In the return statement whatever we want to show will go here.
+       Meaning our HTML actually in the form of JSX.
+
+       Here we will use BrowserRouter, Routes and Route.
+       Like this:
+       <BrowserRouter><NavBar/><LoadingBar/><Routes><Route element={exact path='/pathname' <News/>}></Route></Routes></BrowserRouter>
+       
+       our NavBar here - <NavBar /> inside the BrowserRouter
+       our LoadingBar here - <LoadingBar /> inside the BrowserRouter
+
+       Do not write switch instead write <Routes></Routes>
+       In Routes Route will come like this: <Route></Route>
+
+       Route Syntax: <Route extact path='/pathname' element={JSX Tag} />
+
+       exact - For exact path matching
+
+       pathname - This will be the path where we are telling react to route 
+                  this path and show in the BrowserRouter   
+
+       element - It will include our JSX Tag(<News/>)
+
+       For our purpose JSX Tag will be <News/>
+
+       We will have include <News/> 7 times inside the Route for all the categories which we want to display. And these categories will be Included in the NavBar.js file.
+
+    10. Parameters passing to the News.js are:
+        1.apiKey - apikey of our NEWS API
+        2.setProgress - will be used to increment LoadingBar
+        3.key - this will be unique for all the <News/> categories
+        4.pageSize - for us it will be 10
+        5.category - 7 categories(general,health,technology,sports,
+                     entertainment,science,business)
+        6.country
+
+News.js steps:
+    1. import React, { useEffect, useState } from "react";
+       This will be used to set state variables and update api data after rendering.
+
+    2. import Spinner from "./Spinner";
+       To load Spinner during page load or fetching data later.
+
+    3. import NewsItem from "./NewsItem";
+       We will pass all the news data fetched from API to create our NewsItems in our different categories pages.
+
+    4. import PropTypes from "prop-types";
+       Defining default and required propTypes.
+
+    5. import InfiniteScroll from "react-infinite-scroll-component";
+       For the Implementation of InfiniteScroll during fetching of data after loading of the page.
+
+    6. import { v4 as uuidv4 } from "uuid";
+       To give unique id for our lists/ newsList Items.
+       It is mandatory required.
+
+    7. First take the incoming props from the App.js and destructure them.
+       Like this:
+       {pageSize,country,category,apiKey,setProgress} inside News() function.
+
+    8. Initializing all the variables which are required such as articles,page,loading,
+       totalResults using useState() hooks(special function in react)
+
+       Syntax: const [articles, setArticles] = useState([])
+
+       Initail value of articles will be empty array  []
+       Initail value of page will be 1
+       Initail value of loading will be false
+       Initail value of totalResults will be 0
+
+    9. Defining Default Props
+
+       Syntax: functionName.defaultProps = {}
+
+       Example:
+                 News.defaultProps = {
+                    pageSize: 10,
+                    country: "us",
+                    category: "general",
+                };
+
+    10. Defining PropTypes
+
+        Syntax: functionName.propTypes = {}
+
+        Example:
+                News.propTypes = {
+                    pageSize: PropTypes.number.isRequired,
+                    country: PropTypes.string.isRequired,
+                    category: PropTypes.string.isRequired,
+                };
+
+    11. Update funtion for News when loading
+
+        setProgress - Here we will setProgress at different level of fetching data to 
+                      show user that data is currently loading.
+
+        url - API End-Point for fetching top headlines from the newsapi.org
+
+              Indcludes country, category, apikey, page, pageSize which are dynamically filled.
+
+              For the first time page is always 1.
+
+        setLoading - true when starts to fetch before calling the fetch function and 
+                     false onced data is fetched.
+
+        Json - once data arrived we need to convert/parsedData to json when we are using 
+               fetch function. If we use Axios then no need to parsedData
+
+        setArticles - updating state of articles, initially articles is empty.
+
+        setTotalResults - updating state of totalResults when data is arrived/resolved.
+
+        Example:
+                const updateNews = async () => {
+                setProgress(10);   //Setting LoadingBar to 10
+                const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}&page=${page}&pagesize=${pageSize}`;
+                setProgress(30); //Setting LoadingBar to 30
+                setLoading(true);
+                let data = await fetch(url);
+                let parsedData = await data.json();
+                setProgress(70); //Setting LoadingBar to 70
+                setArticles(parsedData.articles);
+                setTotalResults(parsedData.totalResults);
+                setLoading(false);
+                setProgress(100); //Setting LoadingBar to 100
+            };
+
+    12. capitalizeCase function
+        
+        This function will Capitalize the first character of categories into toUpperCase
+        and remaing characters are in toLowerCase and then concatenate them.
+
+        const capitalizeCase = (category) => {
+        return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+        };
+
+        This function is called when we are trying to show the category as title in the tab of browser to increase user interaction and response.
+
+    13. useEffect hook to re-render the page when user scrolls the news 
+        section for more news.
+        
+        We are calling the capitalizeCase function here to Capitalize the first character of category which is shown in the title of tab of browser.
+
+        useEffect(() => {
+            document.title = `${capitalizeCase(category)} - News Hunger`;
+            updateNews();
+            //eslint-disable-next-line
+        }, []);
+
+        apply //eslint-disable-next-line inside the useEffect if depedency issue arises.
+
+    14. Defining default image variable. It will be used when the image property will be
+        null during api fetching.
+
+    15. Defining fetchMoreData function to get more data when user scrolls the page.
+
+         const fetchMoreData = async () => {
+               const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}&page=${
+               page + 1
+               }&pagesize=${pageSize}`;
+               setPage(page + 1);
+               let data = await fetch(url);
+               let parsedData = await data.json();
+               setArticles(articles.concat(parsedData.articles));
+               setTotalResults(parsedData.totalResults);
+         };
+
+         Here:
+
+         url - it will be the same other then page which will increment by one.
+               we are doing this inside the url itself as if setPage(page + 1) before 
+               updating the url variable then there might be a little glitch so to remove that we are sending page by increamenting inside the url and later we are also updating that.
+
+         setLoading  - no need to set as we have loader inside the <InfiniteScroll/>
+                        JSX Tag which will be called during more data fetching.
+
+
+         setArticles - we are setting the articles once data is resolved by concatenating
+                        them inside our already articles.
+
+                        setArticles(articles.concat(parsedData.articles));
+
+         setTotalResults - updating total totalResults.
+
+                           setTotalResults(parsedData.totalResults);
+
+   16. In return section of News.js
+
+       1. set first news heading based on category which is currently accessed.
+
+       2. apply loading when page loads.
+
+       3. apply InfiniteScroll and pass <NewsItem/> JSX Tag inside it.
+
+            dataLength={articles.length}
+            next={fetchMoreData}
+            hasMore={articles.length !== totalResults}
+            loader={<Spinner />}
+
+            sending dataLength = total length of articles
+                    next = calling fetchMoreData function for more data
+                    hasMore = checks for more data by applying condition on articles
+                              length
+                    loader  = Spinner spins when user scrolls for more data.
+
+   17. loop over articles data array and pass the data as props to the <NewsItem/> Tag
+       such as unique key for div, title, description,imageUrl,publishedAt, newsUrl as id for <NewsItem/>, author, date and category.
+
+   18. for divs ID we have imported - import { v4 as uuidv4 } from "uuid";
+       uuidv4 will give unique Id to each our div.
+
+NewsItem.js steps:
+
+   1. first destructure all the props coming from News.js
+      {title,description,imageUrl,newsUrl,author,date,category}
+
+   2. Create card in the return statement.
+      Get the Card Code from the Bootstaps.com
+
+      apply the above destructured props from the News.js into a good JSX tag which will be shown in the page.
+
+      Apply appropriate css styling for the given Tags inside the app.css file.
+
+Spinner.js Steps:
+
+   1. Get an gif image from any website and store in the components folder.
+
+   2. Inside the Spinner.js file import Loading.gif
+      import Loading from "./Loading.gif";
+
+   3. In the return statement use an image tag and apply the Loading in src
+      attribute. 
+
+
+
+
+
+
+        
+
+        
+
+        
+
+
+
+
+        
+        
+        
+
+       
+       
+
+       
